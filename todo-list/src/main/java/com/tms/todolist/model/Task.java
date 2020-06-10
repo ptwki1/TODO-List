@@ -21,7 +21,7 @@ public class Task extends  BaseEntity{
     @Enumerated(value = EnumType.STRING)
     private TaskStatus status;
 
-    @ManyToMany(mappedBy = "tasks")
+    @ManyToMany(mappedBy = "tasks",fetch = FetchType.LAZY)
     private List<User> users;
 
 //    TaskGroup group;// (к какой группе будет относиться задача)

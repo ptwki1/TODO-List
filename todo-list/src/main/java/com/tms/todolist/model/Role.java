@@ -1,15 +1,16 @@
 package com.tms.todolist.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @lombok.Data
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;//(id роли в бд)
+public class Role extends BaseEntity {
 
     @Column
     private String name;// (роль пользователя)
+
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private List<User> users;
 
 }
