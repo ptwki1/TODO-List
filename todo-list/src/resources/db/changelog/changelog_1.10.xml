@@ -5,14 +5,14 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-    <changeSet author="novik.vladislav" id="1.5">
-        <addForeignKeyConstraint baseColumnNames="user_id"
+    <changeSet author="novik.vladislav" id="1.10">
+        <addForeignKeyConstraint baseColumnNames="task_id"
                                  baseTableName="user_tasks"
-                                 constraintName="fk_user_tasks_user"
+                                 constraintName="fk_user_tasks_tasks"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
-                                 referencedTableName="users"/>
+                                 referencedTableName="tasks"/>
     </changeSet>
 
 </databaseChangeLog>
