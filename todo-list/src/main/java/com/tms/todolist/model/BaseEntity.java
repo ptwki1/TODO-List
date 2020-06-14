@@ -19,5 +19,5 @@ public class BaseEntity {
     @Column
     private Date update;
     @Column
-    private boolean active;
+    private Status active;
 }
