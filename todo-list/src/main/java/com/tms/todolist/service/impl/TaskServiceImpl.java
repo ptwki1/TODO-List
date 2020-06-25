@@ -4,9 +4,11 @@ import com.tms.todolist.model.Task;
 import com.tms.todolist.repository.TaskRepository;
 import com.tms.todolist.service.interfece.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository repo;
@@ -45,4 +47,12 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getAllActive() {
         return repo.findTasksByActive();
     }
+
+    @Override
+    public Task doneTask(Long id) {
+        Task task=repo.findTaskById(id);
+        task.setActive(false);
+        return repo.saveAndFlush(task);
+    }
+
 }

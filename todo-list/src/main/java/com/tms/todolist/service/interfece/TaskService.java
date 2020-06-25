@@ -17,4 +17,6 @@ public interface TaskService {
     List<Task> getAll();
 
     List<Task> getAllActive();
+
+    Task doneTask(Long id);
 }

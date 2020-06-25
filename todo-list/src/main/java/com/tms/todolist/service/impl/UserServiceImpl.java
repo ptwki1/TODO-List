@@ -4,9 +4,11 @@ import com.tms.todolist.model.User;
 import com.tms.todolist.repository.UserRepository;
 import com.tms.todolist.service.interfece.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
 public class UserServiceImpl implements UserService {
 
     private  final UserRepository repo;
