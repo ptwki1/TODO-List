@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Data
-@Entity
 public class Person extends BaseEntity {
     @Column
     private String name;

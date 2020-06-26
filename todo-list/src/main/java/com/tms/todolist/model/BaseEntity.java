@@ -17,7 +17,7 @@ public class BaseEntity {
     @Column
     private Date created;
     @Column
-    private Date update;
+    private Date updated;
     @Column
     private boolean active;
 }

@@ -45,7 +45,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getAllActive() {
-        return repo.findTasksByActive();
+        return repo.findTasksByActive(true);
     }
 
     @Override

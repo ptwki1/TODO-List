@@ -9,6 +9,7 @@ import org.springframework.data.util.Pair;
 import javax.persistence.*;
 import java.util.List;
 @Entity
+@Table(name = "users")
 @lombok.Data
 public class User extends Person {
 
