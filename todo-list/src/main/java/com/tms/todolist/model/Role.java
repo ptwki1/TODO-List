@@ -8,7 +8,7 @@ import java.util.List;
 public class Role extends BaseEntity {
     private String name;// (роль пользователя)
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
 }
