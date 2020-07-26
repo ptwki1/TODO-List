@@ -1,8 +1,9 @@
 package com.tms.todolist.model;
 
+import com.tms.todolist.model.room.TaskRoom;
+import com.tms.todolist.model.room.UserRoom;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import org.w3c.dom.ls.LSInput;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -49,5 +50,11 @@ public class User extends BaseEntity {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserRoom> userRooms;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<TaskRoom> taskRoomList;
 
 }

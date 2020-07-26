@@ -1,11 +1,11 @@
 package com.tms.todolist.model;
 
+import com.tms.todolist.model.room.TaskRoom;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,31 +19,27 @@ public class Task extends BaseEntity {
         super(id, created, updated, active);
         this.description = description;
         this.status = status;
-//        this.group=group;
         this.users = users;
     }
 
     @Column
     private String description;//(описание задания)
 
-    //    @Column
-//    @Enumerated(value = EnumType.STRING)
-//    private TaskGroup group;
-//
     @Column
     @Enumerated(value = EnumType.STRING)
     private TaskStatus status;
 
-    private LocalDateTime endDate;
 
     @ManyToMany(mappedBy = "tasks")
     private List<User> users;
 
-    public boolean isActive() {
-//        return endDate == null || LocalDateTime.now().compareTo(endDate) <= 0 && (status check);
-        return false;
-    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
+    private List<TaskRoom> taskRoomList;
 
-//    TaskGroup group;// (к какой группе будет относиться задача)
+//    public boolean isActive() {
+////        return endDate == null || LocalDateTime.now().compareTo(endDate) <= 0 && (status check);
+//        return false;
+//    }
+
 
 }
