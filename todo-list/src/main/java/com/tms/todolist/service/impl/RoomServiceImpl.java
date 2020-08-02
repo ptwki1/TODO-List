@@ -55,17 +55,19 @@ public class RoomServiceImpl implements RoomService {
                     .map(task -> mapTaskRoom(room,task))
                     .collect(toList());
 
+
             room.getUserRooms().clear();
             room.getUserRooms().addAll(userRooms);
-            room.getTaskRoomList().clear();
 
-            room.setTaskRoomList(taskRoomList);
+            room.getTaskRoomList().clear();
+            room.getTaskRoomList().addAll(taskRoomList);
+
             room.setName(roomDtoReq.getName());
             room.setActive(roomDtoReq.isActive());
             room.setUpdated(roomDtoReq.getUpdated());
 
             return roomMapper.toRoomDto(room);
-        }).orElse(null);
+        }).orElse(null); //
     }
 
     private UserRoom mapUserRoom(final Room room, final User user) {
@@ -78,6 +80,7 @@ public class RoomServiceImpl implements RoomService {
                         .requestStatus(PENDING)
                         .build());
     }
+
     private TaskRoom mapTaskRoom(final Room room, final Task task) {
         return Optional.ofNullable(task.getTaskRoomList()).orElse(emptyList()).stream()
                 .filter(taskRoom -> taskRoom.getTask().equals(task))
