@@ -16,6 +16,6 @@ public class RoomDto {
     boolean active;
     String name;
     List<UserShortDto> users;
-//    List<Task> tasks;
+    List<TaskShortDto> tasks;
     
 }

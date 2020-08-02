@@ -14,4 +14,5 @@ public class RoomDtoReq {
     boolean active;
     String name;
     List<Long> users;
+    List<Long> tasks;
 }

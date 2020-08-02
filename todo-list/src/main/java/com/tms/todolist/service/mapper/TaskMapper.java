@@ -34,9 +34,6 @@ public class TaskMapper {
     public TaskShortDto toTaskShortDto(final Task task) {
         return TaskShortDto.builder()
                 .id(task.getId())
-                .description(task.getDescription())
-                .status(task.getStatus())
-                .active(task.isActive())
                 .build();
     }
 

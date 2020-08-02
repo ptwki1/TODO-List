@@ -9,4 +9,6 @@ public interface RoomService {
 
     RoomDto editRoom(Long id, RoomDtoReq roomDtoReq);
 
+//    RoomDto addTask(Long id,RoomDtoReq roomDtoReq);
+
 }

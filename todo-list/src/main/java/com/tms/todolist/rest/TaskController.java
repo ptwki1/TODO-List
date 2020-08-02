@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = { "http://localhost:3000"})
 @RestController
 @AllArgsConstructor
 public class TaskController {
@@ -61,12 +61,12 @@ public class TaskController {
         return taskService.addTask(task);
     }
 
+    @Deprecated
     @GetMapping("/users/{userId}/tasks/{taskId}")
     public TaskDto one(@PathVariable final Long userId, @PathVariable final Long taskId) {
         return taskService.findById(userId, taskId);
     }
 
-    @Deprecated
     @GetMapping("/task/get/{id}")
     public TaskDto getById(@PathVariable(value = "id") Long id) {
         return taskService.findById(id);

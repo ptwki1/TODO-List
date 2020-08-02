@@ -11,11 +11,9 @@ import com.tms.todolist.repository.UserRepository;
 import com.tms.todolist.service.TaskService;
 import com.tms.todolist.service.mapper.TaskMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -110,12 +108,9 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskShortDto> allActive() {
-        List<Task> tasks = taskRepository.findTasksByActive(true);
-        List<TaskShortDto> taskShortDtos = new ArrayList<>();
-        for (Task task : tasks) {
-            taskShortDtos.add(taskMapper.toTaskShortDto(task));
-        }
-        return taskShortDtos;
+        return taskRepository.findTasksByActive(true).stream()
+                .map(taskMapper::toTaskShortDto)
+                .collect(Collectors.toList());
     }
 
     @Override

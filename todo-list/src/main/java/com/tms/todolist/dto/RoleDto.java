@@ -9,6 +9,6 @@ import java.util.List;
 @Builder
 public class RoleDto {
     Long id;
-    Long name;
+    String name;
     List<User> user;
 }

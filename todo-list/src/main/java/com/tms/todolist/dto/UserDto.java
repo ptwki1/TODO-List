@@ -10,14 +10,14 @@ import java.util.List;
 @Builder
 public class UserDto {
     Long id;
-    Date created;
-    Date updated;
-    boolean active;
+    Date created;//
+    Date updated;//
+    boolean active;//
     String name;
     String avatar;
     String login;
-    String password;
+    String password;//
     List<TaskShortDto> tasks;
-    List<RoleShortDto> roles;
+    List<RoleShortDto> roles;//
 
 }

@@ -1,11 +1,10 @@
 package com.tms.todolist.service.mapper;
 
-import com.tms.todolist.dto.RoomDto;
-import com.tms.todolist.dto.RoomDtoReq;
-import com.tms.todolist.dto.RoomShortDto;
-import com.tms.todolist.dto.UserShortDto;
+import com.tms.todolist.dto.*;
+import com.tms.todolist.model.Task;
 import com.tms.todolist.model.room.Room;
 import com.tms.todolist.model.User;
+import com.tms.todolist.model.room.TaskRoom;
 import com.tms.todolist.model.room.UserRoom;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +31,11 @@ public class RoomMapper {
                         .map(UserRoom::getUser)
                         .map(this::toUserShortDto)
                         .collect(toList()))
+                .tasks(Optional.ofNullable(room.getTaskRoomList())
+                        .orElse(new ArrayList<>()).stream()
+                        .map(TaskRoom::getTask)
+                        .map(this::toTaskShortDto)
+                        .collect(toList()))
                 .build();
     }
 
@@ -41,6 +45,11 @@ public class RoomMapper {
                 .name(user.getName())
                 .build();
     }
+    private TaskShortDto toTaskShortDto(final Task task) {
+        return TaskShortDto.builder()
+                .id(task.getId())
+                .build();
+    }
 
     public RoomShortDto toRoomShortDto(final Room room) {
         return RoomShortDto.builder()
@@ -48,10 +57,10 @@ public class RoomMapper {
                 .build();
     }
 
-    public Room fromRoomDtoReq(final RoomDtoReq roomDtoReq, final List<User> users) {
+    public Room fromRoomDtoReq(final RoomDtoReq roomDtoReq,
+                               final List<User> users,
+                               final List<Task> tasks) {
         final Room room = Room.builder()
-                .active(roomDtoReq.isActive())
-                .created(roomDtoReq.getCreated())
                 .updated(roomDtoReq.getUpdated())
                 .name(roomDtoReq.getName())
                 .userRooms(Optional.ofNullable(users).orElse(emptyList())
@@ -61,10 +70,15 @@ public class RoomMapper {
                                 .requestStatus(PENDING)
                                 .build())
                         .collect(toList()))
+                .taskRoomList(Optional.ofNullable(tasks).orElse(emptyList())
+                        .stream()
+                        .map(task -> TaskRoom.builder()
+                                .task(task)
+                                .build())
+                        .collect(toList()))
                 .build();
 
         room.getUserRooms().forEach(userRoom -> userRoom.setRoom(room));
-
         return room;
     }
 

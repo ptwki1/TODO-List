@@ -3,6 +3,7 @@ package com.tms.todolist.service;
 import com.tms.todolist.dto.TaskDto;
 import com.tms.todolist.dto.TaskDtoReq;
 import com.tms.todolist.dto.TaskShortDto;
+import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
 

@@ -43,9 +43,6 @@ public class UserMapper {
     private TaskShortDto toTaskShortDto(final Task task) {
         return TaskShortDto.builder()
                 .id(task.getId())
-                .active(task.isActive())
-                .status(task.getStatus())
-                .description(task.getDescription())
                 .build();
     }
     public User fromUserDtoReq(final UserDtoReq userDtoReq, List<Task> tasks,List<Role> roles){

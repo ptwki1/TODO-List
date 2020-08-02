@@ -15,10 +15,15 @@ import java.util.List;
 @NoArgsConstructor
 public class Room extends BaseEntity {
     @Builder
-    public Room(Long id, Date created, Date updated, boolean active, String name, List<UserRoom> userRooms) {
+    public Room(Long id, Date created, Date updated,
+                boolean active,
+                String name,
+                List<UserRoom> userRooms,
+                List<TaskRoom> taskRoomList) {
         super(id, created, updated, active);
         this.name = name;
         this.userRooms = userRooms;
+        this.taskRoomList = taskRoomList;
     }
 
     @Column
